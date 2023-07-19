@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="m-4" style="color: chocolate;">New Comment !!!</h1>
+    <form method="post" style="font-weight: bold; font-size: 1.5em;" class="m-5">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-outline-success m-4 fs-4 px-5">Post</button>
+    </form>
+</div>
+
+{% endblock %}

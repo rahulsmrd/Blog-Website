@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Post Detail{% endblock %}
+
+{% block body %}
+<h1 class="m-4" style="color: rgb(243, 180, 8);">Post Details !!!</h1>
+<hr><hr>
+<div class="container d-flex">
+    <h1 class="m-3 me-5">{{ posts.headding }}</h1>
+    <h2 class="m-3 p-1 ms-5"><a href="{% url 'user_data:user_list' posts.user.pk %}" style="color: green;">@{{ posts.user }}</a>
+    </h2>
+</div>
+<div class="container">
+    {% if posts.is_it_an_Image %}
+    <img src="{{ posts.upload_File.url }}" style="width: 50em; height: 50em; border-radius: 1.5em; border: 0.4em dotted black;" alt="Post Missing">
+    {% else %}
+    <video src="{{ posts.upload_File.url }}" style="width: 40em; height: 30em;" alt="Post Missing"></video>
+    {% endif %}
+</div>
+<div class="container m-5">
+    <h1 style="color: rgb(59, 116, 2);">Description </h1>
+    <h4 class="ms-3 card-body card px-5" style="width: fit-content;color: blue;">{{ posts.description }}</h4>
+</div>
+<div class="container d-flex m-3 ms-5" style="width: fit-content;">
+    <button class="like_btn fs-4 me-5"><i class="bi bi-heart like me-2" id="liked"></i>Like</button>
+    <a href="{% url 'blog_app:comment' posts.pk %}" class="comments fs-4 ms-5" id="comment" style="text-decoration: none; color: black;"><i
+            class="bi bi-chat mx-2"></i>Comment</a>
+</div>
+<a href="{% url 'blog_app:comment_detail' posts.pk %}" class="ms-5 fs-5" style="text-decoration: none;color: rgb(253, 0, 169);"> Comments : {{ posts.comments.count }} </a>
+<hr><hr>
+{% if user == posts.user %}
+<a href="{% url 'blog_app:post_delete' posts.pk %}" class="btn btn-outline-danger m-4 px-5 fs-5">Delete</a>
+{% endif %}
+<p></p>
+<p></p>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+#head{
+    color: brown;
+}
+
+.like_btn{
+    background-color: transparent;
+    border: 0;
+}
+
+.bold{
+    font-weight: bolder;
+}

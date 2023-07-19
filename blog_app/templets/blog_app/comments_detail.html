@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}All Comments{% endblock %}
+
+{% block body %}
+<h1 style="color:blueviolet;" class="m-3">Comments !!!</h1>
+<hr>
+{% for comments in post.Comments %}
+<div class="container m-3">
+    <h3 class="m-2" style="color:rgb(62, 122, 231);">Posted by : {{comments.name}} </h3>
+    <h5 class="m-2"><b>Comment : </b> {{comments.text}} </h5>
+    <p class="m-2"><b>Commented on :</b> {{ comments.published_date }}</p>
+    <hr>
+</div>
+{% endfor %}
+
+{% endblock %}

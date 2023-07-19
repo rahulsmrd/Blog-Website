@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-8">
+        <h1 id="yd" class="m-4" style="color: rgb(174, 0, 255);">Blog Web</h1>
+        <hr>
+        {% for post in posts_list %}
+        <a href="{% url 'blog_app:post_detail' post.pk %}" style="text-decoration: none;">
+            <div class="container d-flex">
+                <h2 class="m-3 me-5" style="color: rgb(250, 183, 0);text-decoration: nonw;">{{ post.headding }}</h2>
+                <h3 class="m-3 ms-5 p-1 text-end"><a
+                        href="{% url 'user_data:user_list' post.user.pk %}" style="color: green;text-decoration: none;">@{{ post.user }}</a>
+                </h3>
+            </div>
+            <div class="container">
+                {% if post.is_it_an_Image %}
+                <img src="{{ post.upload_File.url }}"
+                    style="width: 40em; height: 30em;border-radius: 1.5em; border: 0.4em dotted black;"
+                    alt="Post Missing">
+                {% else %}
+                <video src="{{ post.upload_File.url }}" style="width: 40em; height: 30em;" alt="Post Missing"></video>
+                {% endif %}
+            </div>
+            <div class="container d-flex m-4">
+                <button class="like_btn fs-4 me-5"><i class="bi bi-heart like me-2" id="liked"></i>Like</button>
+                <a href="{% url 'blog_app:comment' post.pk %}" class="comments text-end fs-4 ms-5" id="comment"
+                    style="text-decoration: none; color: black;"><i class="bi bi-chat mx-2"></i>Comment</a>
+            </div>
+            <a href="{% url 'blog_app:comment_detail' post.pk %}" class="ms-5 fs-5"
+                style="text-decoration: none;color: rgb(253, 0, 169);"> Comments : {{ post.comments.count }}</a>
+
+        </a>
+        <hr>
+
+        {% endfor %}
+    </div>
+    <div class="col"></div>
+</div>
+
+<h2 class="text-center m-5">You have reached end of Posts !!! :-)</h2>
+
+{% endblock %}

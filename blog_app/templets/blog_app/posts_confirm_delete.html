@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+<div class="conatiner">
+    <h1 class="m-4" style="color: rgb(235, 47, 47);">Are you sure you want to delete {{posts.headding}} ?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-outline-danger m-3" type="submit">Delete</button>
+        <a href="{% url 'blog_app:post_list' %}" class="btn btn-outline-warning m-3">Cancle</a>
+    </form>
+</div>
+{% endblock %}
